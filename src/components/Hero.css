@@ -1,0 +1,310 @@
+/* ══════════════════════════════════════
+   HERO SECTION
+   image.png is the FULL BACKGROUND
+══════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  padding-top: 68px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  /* image.png fills the entire section */
+  background-image: url('/image.png');
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #fff5f5;
+}
+
+/* ── 2-column overlay: left text | right card ── */
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  align-items: center;
+  padding: 60px 80px;
+  gap: 40px;
+  min-height: calc(100vh - 68px);
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════
+   LEFT: TEXT CONTENT
+══════════════════════════════════════ */
+.hero__content {
+  max-width: 520px;
+}
+
+.hero__eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.8px;
+  color: #777;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.hero__headline {
+  font-size: clamp(38px, 4.5vw, 62px);
+  font-weight: 900;
+  line-height: 1.07;
+  color: #111;
+  margin-bottom: 18px;
+  letter-spacing: -1.5px;
+}
+
+.hero__headline--red {
+  color: var(--primary);
+  display: block;
+}
+
+.hero__desc {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.72;
+  margin-bottom: 28px;
+  max-width: 430px;
+}
+
+/* Feature icons — horizontal row */
+.hero__features {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 32px;
+  align-items: flex-start;
+}
+
+.hero__feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  width: 85px;
+}
+
+.hero__feature-icon {
+  width: 56px;
+  height: 56px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba(200,16,46,0.18);
+  transition: var(--transition);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.hero__feature:hover .hero__feature-icon {
+  background: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(200,16,46,0.3);
+}
+
+.hero__feature:hover .hero__feature-icon svg {
+  filter: brightness(10);
+}
+
+.hero__feature-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #555;
+  line-height: 1.4;
+  white-space: pre-line;
+}
+
+/* CTA Buttons */
+.hero__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.hero__btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--primary);
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 700;
+  border: 2px solid var(--primary);
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 6px 24px rgba(200,16,46,0.32);
+  font-family: var(--font-main);
+}
+
+.hero__btn-primary:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(200,16,46,0.40);
+}
+
+.hero__btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: #fff;
+  color: #222;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 700;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: var(--font-main);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.hero__btn-secondary:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* ══════════════════════════════════════
+   RIGHT: DOCTOR INFO CARD
+   (floats over the right side of bg image)
+══════════════════════════════════════ */
+.hero__info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.hero__info-card {
+  background: rgba(255,255,255,0.97);
+  border-radius: var(--radius-lg);
+  padding: 22px 20px;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.10);
+  border: 1px solid #f0f0f0;
+  animation: fadeInUp 0.7s 0.3s ease both;
+  width: 280px;
+  backdrop-filter: blur(8px);
+}
+
+.hero__info-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.hero__info-avatar {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--primary), #e84068);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 900;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(200,16,46,0.3);
+}
+
+.hero__info-name {
+  font-size: 15px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 1px;
+}
+
+.hero__info-role {
+  font-size: 11.5px;
+  color: #888;
+  margin-bottom: 2px;
+}
+
+.hero__info-exp {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.hero__info-divider {
+  height: 1px;
+  background: #f0f0f0;
+  margin: 12px 0 10px;
+}
+
+.hero__info-quote-icon {
+  font-size: 22px;
+  line-height: 1;
+  color: var(--primary);
+  opacity: 0.2;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.hero__info-quote {
+  font-size: 12.5px;
+  color: #555;
+  line-height: 1.65;
+  font-style: italic;
+}
+
+/* Stat card */
+.hero__stat-card {
+  background: linear-gradient(135deg, var(--primary), #d4143a);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  animation: fadeInUp 0.7s 0.5s ease both;
+  box-shadow: 0 8px 26px rgba(200,16,46,0.32);
+  width: 280px;
+}
+
+.hero__stat-icon { flex-shrink: 0; }
+
+.hero__stat-number {
+  display: block;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.hero__stat-label {
+  display: block;
+  font-size: 12.5px;
+  opacity: 0.88;
+  font-weight: 600;
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    padding: 60px 40px;
+  }
+  .hero__info { align-items: flex-start; }
+  .hero__info-card, .hero__stat-card { width: 100%; max-width: 360px; }
+}
+
+@media (max-width: 600px) {
+  .hero__headline { font-size: 36px; letter-spacing: -1px; }
+  .hero__inner { padding: 50px 24px; }
+  .hero__features { gap: 14px; }
+}

@@ -1,0 +1,162 @@
+/* ══════════════════════════════════════
+   CTA SECTION — "Your Transformation Starts Today"
+   Red background with doctor photo on right
+══════════════════════════════════════ */
+.cta-section {
+  padding: 0;
+  background: linear-gradient(120deg, #9b0b20 0%, #c8102e 45%, #b50d26 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle bg decorations */
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: 260px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+  pointer-events: none;
+}
+.cta-section::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+  pointer-events: none;
+}
+
+/* ── Layout: text left | doctor photo right ── */
+.cta-section__inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0;
+  align-items: flex-end;   /* doctor sits at bottom */
+  position: relative;
+  z-index: 1;
+  min-height: 240px;
+}
+
+/* ── LEFT: Text & CTAs ── */
+.cta-section__content {
+  padding: 64px 0 64px 0;
+}
+
+.cta-section__title {
+  font-size: clamp(24px, 2.8vw, 38px);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+
+.cta-section__subtitle {
+  font-size: 15px;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+.cta-section__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+  align-items: center;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 2px solid transparent;
+  font-family: var(--font-main);
+  white-space: nowrap;
+}
+
+.cta-btn--primary {
+  background: #fff;
+  color: var(--primary);
+  border-color: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+}
+
+.cta-btn--primary:hover {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255,255,255,0.8);
+  transform: translateY(-2px);
+}
+
+.cta-btn--outline {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255,255,255,0.55);
+}
+
+.cta-btn--outline:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: #fff;
+  transform: translateY(-2px);
+}
+
+.cta-section__call {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.82);
+  font-size: 14.5px;
+}
+
+.cta-section__call strong {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ── RIGHT: Doctor Photo ── */
+.cta-section__doctor-wrap {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  /* photo bleeds up from the bottom */
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.cta-section__doctor-img {
+  height: 320px;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom center;
+  display: block;
+  /* Darken slightly so doctor shows clearly over red bg */
+  filter: brightness(0.97) saturate(1.1);
+  /* Remove white bg blend — PNG should already be transparent */
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  .cta-section__inner {
+    grid-template-columns: 1fr;
+  }
+  .cta-section__doctor-wrap {
+    display: none;
+  }
+  .cta-section__content {
+    padding: 56px 0;
+  }
+}

@@ -1,0 +1,70 @@
+.benefits {
+  padding: 72px 0;
+  background: #fff;
+}
+
+.benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.benefit-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  animation: fadeInUp 0.6s ease both;
+  cursor: pointer;
+}
+
+.benefit-item__icon-ring {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  border: 2px dashed rgba(200,16,46,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  position: relative;
+}
+
+.benefit-item:hover .benefit-item__icon-ring {
+  background: var(--primary);
+  border-color: var(--primary);
+  transform: scale(1.1);
+  box-shadow: 0 8px 24px rgba(200,16,46,0.25);
+}
+
+.benefit-item:hover .benefit-item__icon-ring svg {
+  filter: brightness(10);
+}
+
+.benefit-item__icon {
+  font-size: 34px;
+  transition: transform 0.3s ease;
+}
+
+.benefit-item:hover .benefit-item__icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.benefit-item__label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-medium);
+  line-height: 1.4;
+  white-space: pre-line;
+}
+
+@media (max-width: 900px) {
+  .benefits__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .benefits__grid { grid-template-columns: repeat(2, 1fr); }
+}
