@@ -142,7 +142,7 @@ const Services = () => {
               <p>Book a consultation with Dr. Meenakshi Jain and take the first step towards a fitter, healthier and happier you.</p>
               <div className="cta-buttons" style={{ justifyContent: 'flex-start' }}>
                 <button className="btn-primary" onClick={() => document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' })}>Start Assessment <span>→</span></button>
-                <button className="btn-outline-red" style={{ background: '#fff' }} onClick={() => document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' })}>Book an Appointment</button>
+                <button className="btn-outline-red" style={{ background: '#fff' }} onClick={() => window.dispatchEvent(new Event('openBookingModal'))}>Book an Appointment</button>
               </div>
             </div>
           </div>

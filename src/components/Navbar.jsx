@@ -69,7 +69,7 @@ const Navbar = () => {
         </ul>
 
         {/* CTA Button */}
-        <button className="btn-primary navbar__cta" onClick={() => document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' })}>Book an Appointment</button>
+        <button className="btn-primary navbar__cta" onClick={() => window.dispatchEvent(new Event('openBookingModal'))}>Book an Appointment</button>
 
         {/* Hamburger */}
         <button className={`navbar__hamburger ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
@@ -85,7 +85,7 @@ const Navbar = () => {
           <Link to="/services" onClick={(e) => handleNavClick(e, '/services', '')} className="mobile-link">Services</Link>
           <Link to="/services/weight-loss-program" onClick={(e) => handleNavClick(e, '/services/weight-loss-program', '')} className="mobile-link">Service Detail</Link>
           <Link to="/success-stories" onClick={(e) => handleNavClick(e, '/success-stories', '')} className="mobile-link">Success Stories</Link>
-          <button className="btn-primary" style={{ marginTop: 12 }} onClick={(e) => handleNavClick(e, location.pathname, '#cta')}>Book an Appointment</button>
+          <button className="btn-primary" style={{ marginTop: 12 }} onClick={() => { window.dispatchEvent(new Event('openBookingModal')); setMenuOpen(false); }}>Book an Appointment</button>
         </div>
       )}
     </nav>

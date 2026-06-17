@@ -23,7 +23,7 @@ const CTASection = () => {
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </button>
-            <button className="cta-btn cta-btn--outline" onClick={() => scrollTo('cta')}>
+            <button className="cta-btn cta-btn--outline" onClick={() => window.dispatchEvent(new Event('openBookingModal'))}>
               Book an Appointment
             </button>
           </div>

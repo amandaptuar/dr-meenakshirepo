@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import CTASection from './components/CTASection';
@@ -7,14 +7,24 @@ import About from './pages/About';
 import SuccessStories from './pages/SuccessStories';
 import Services from './pages/Services';
 import ServiceDetail from './pages/ServiceDetail';
+import BookingModal from './components/BookingModal';
 import './App.css';
 
 function App() {
   const location = useLocation();
   const showGlobalCTA = !['/success-stories', '/services'].includes(location.pathname) && !location.pathname.startsWith('/services/');
 
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+
+  useEffect(() => {
+    const handleOpenBookingModal = () => setIsBookingModalOpen(true);
+    window.addEventListener('openBookingModal', handleOpenBookingModal);
+    return () => window.removeEventListener('openBookingModal', handleOpenBookingModal);
+  }, []);
+
   return (
     <div className="app">
+      <BookingModal isOpen={isBookingModalOpen} onClose={() => setIsBookingModalOpen(false)} />
       <Navbar />
       <main>
         <Routes>

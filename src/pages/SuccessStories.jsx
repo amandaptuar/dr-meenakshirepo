@@ -224,7 +224,7 @@ const SuccessStories = () => {
               <p>Take the first step today towards a fitter, healthier and happier you.</p>
               <div className="cta-buttons">
                 <button className="btn-white" onClick={() => document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' })}>Start Assessment <span>→</span></button>
-                <button className="btn-outline-white" onClick={() => document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' })}>Book an Appointment <span>→</span></button>
+                <button className="btn-outline-white" onClick={() => window.dispatchEvent(new Event('openBookingModal'))}>Book an Appointment <span>→</span></button>
               </div>
             </div>
             <img src="/veggie_bowl.png" alt="Healthy nutrition bowl" className="cta-bowl-img" />

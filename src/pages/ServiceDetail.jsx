@@ -60,7 +60,7 @@ const ServiceDetail = () => {
                   <svg viewBox="0 0 24 24" fill="none" stroke="#d4143a" strokeWidth="2" style={{width:'12px', height:'12px'}}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </span>
               </button>
-              <button className="btn-outline-grey" onClick={() => document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' })}>Book an Appointment</button>
+              <button className="btn-outline-grey" onClick={() => window.dispatchEvent(new Event('openBookingModal'))}>Book an Appointment</button>
             </div>
           </div>
           
@@ -182,7 +182,7 @@ const ServiceDetail = () => {
                     <svg viewBox="0 0 24 24" fill="none" stroke="#d4143a" strokeWidth="2" style={{width:'12px', height:'12px'}}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </span>
                 </button>
-                <button className="btn-outline-grey" onClick={() => document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' })}>Book an Appointment</button>
+                <button className="btn-outline-grey" onClick={() => window.dispatchEvent(new Event('openBookingModal'))}>Book an Appointment</button>
               </div>
             </div>
           </div>
