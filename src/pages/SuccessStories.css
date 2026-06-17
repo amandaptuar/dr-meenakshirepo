@@ -746,6 +746,7 @@
   .text-reviews__grid { grid-template-columns: 1fr; }
   .cta-doctor-img, .cta-bowl-img { display: none; }
   .success-cta__bg { border-radius: 0; padding: 40px 24px; }
+  .success-footer-ribbon { display: none; }
 }
 
 @media (max-width: 600px) {
@@ -754,5 +755,4 @@
   .videos-grid { grid-template-columns: 1fr; }
   .carousel-arrow { display: none; }
   .cta-buttons { flex-direction: column; }
-  .footer-ribbon__inner { flex-direction: column; align-items: flex-start; }
 }
