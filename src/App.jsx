@@ -1,26 +1,30 @@
 import React from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Transformations from './components/Transformations';
-import Services from './components/Services';
-import Benefits from './components/Benefits';
-import ObesityCrisis from './components/ObesityCrisis';
-import AIAssessment from './components/AIAssessment';
 import CTASection from './components/CTASection';
+import Home from './pages/Home';
+import About from './pages/About';
+import SuccessStories from './pages/SuccessStories';
+import Services from './pages/Services';
+import ServiceDetail from './pages/ServiceDetail';
 import './App.css';
 
 function App() {
+  const location = useLocation();
+  const showGlobalCTA = !['/success-stories', '/services'].includes(location.pathname) && !location.pathname.startsWith('/services/');
+
   return (
     <div className="app">
       <Navbar />
       <main>
-        <Hero />
-        <Transformations />
-        <Services />
-        <Benefits />
-        <ObesityCrisis />
-        <AIAssessment />
-        <CTASection />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/success-stories" element={<SuccessStories />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/:id" element={<ServiceDetail />} />
+        </Routes>
+        {showGlobalCTA && <CTASection />}
       </main>
       <footer className="footer">
         <div className="container footer__inner">
