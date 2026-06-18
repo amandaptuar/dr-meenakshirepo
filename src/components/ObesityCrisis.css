@@ -41,15 +41,16 @@
 
 /* ── LEFT CONTENT ── */
 .obesity-crisis__title {
-  font-size: clamp(28px, 3.5vw, 46px);
-  font-weight: 900;
+  font-size: var(--text-section-heading-size);
+  font-weight: var(--text-section-heading-weight);
   color: #fff;
   margin-bottom: 10px;
   line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 .obesity-crisis__subtitle {
-  font-size: 17px;
+  font-size: var(--text-body-size);
   color: rgba(255,255,255,0.72);
   margin-bottom: 48px;
 }
@@ -78,16 +79,16 @@
 /* SVG icons are already styled white/translucent via stroke props */
 
 .crisis-stat__number {
-  font-size: clamp(28px, 3vw, 42px);
+  font-size: var(--text-section-heading-size);
   font-weight: 900;
   display: block;
   margin-bottom: 6px;
   line-height: 1;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.02em;
 }
 
 .crisis-stat__label {
-  font-size: 14px;
+  font-size: var(--text-small-size);
   color: rgba(255,255,255,0.7);
   line-height: 1.4;
   font-weight: 500;

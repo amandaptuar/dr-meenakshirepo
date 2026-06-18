@@ -50,14 +50,16 @@
 }
 
 .service-card__title {
-  font-size: 16px;
-  font-weight: 800;
+  font-size: var(--text-card-title-size);
+  font-weight: var(--text-card-title-weight);
   color: var(--text-dark);
   margin-bottom: 10px;
+  letter-spacing: -0.02em;
 }
 
 .service-card__desc {
-  font-size: 13px;
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
   color: var(--text-light);
   line-height: 1.65;
   margin-bottom: 16px;
@@ -67,8 +69,8 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
-  font-weight: 700;
+  font-size: var(--text-btn-size);
+  font-weight: var(--text-btn-weight);
   color: var(--primary);
   background: none;
   border: none;

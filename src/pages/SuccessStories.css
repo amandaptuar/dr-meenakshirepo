@@ -63,16 +63,16 @@
 }
 
 .success-hero__title {
-  font-size: clamp(46px, 5.2vw, 76px);
-  font-weight: 900;
+  font-size: var(--text-hero-size);
+  font-weight: var(--text-hero-weight);
   line-height: 1.05;
   color: #111;
   margin-bottom: 22px;
-  letter-spacing: -2px;
+  letter-spacing: -0.03em;
 }
 
 .success-hero__desc {
-  font-size: 17px;
+  font-size: var(--text-body-size);
   color: #555;
   line-height: 1.75;
   margin-bottom: 40px;
@@ -152,7 +152,7 @@
 }
 
 .success-hero__quote-card p {
-  font-size: 16px;
+  font-size: var(--text-small-size);
   color: #444;
   line-height: 1.6;
   font-style: italic;
@@ -298,8 +298,8 @@
 }
 
 .story-name {
-  font-size: 18px;
-  font-weight: 800;
+  font-size: var(--text-nav-size);
+  font-weight: var(--text-nav-weight);
   color: #111;
   margin-bottom: 4px;
   text-align: center;
@@ -362,8 +362,8 @@
   border: 1px solid var(--primary);
   background: transparent;
   color: var(--primary);
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--text-btn-size);
+  font-weight: var(--text-btn-weight);
   border-radius: 50px;
   cursor: pointer;
   transition: var(--transition);
@@ -414,17 +414,17 @@
 }
 
 .ribbon-stat h3 {
-  font-size: 28px;
-  font-weight: 900;
+  font-size: var(--text-section-heading-size);
+  font-weight: var(--text-section-heading-weight);
   color: #111;
   line-height: 1;
   margin-bottom: 4px;
 }
 
 .ribbon-stat p {
-  font-size: 14px;
+  font-size: var(--text-small-size);
   color: #555;
-  font-weight: 600;
+  font-weight: var(--text-nav-weight);
 }
 
 .ribbon-divider {
@@ -578,7 +578,7 @@
 .stars svg { width: 18px; height: 18px; }
 
 .review-card p {
-  font-size: 15px;
+  font-size: var(--text-body-size);
   color: #444;
   line-height: 1.6;
   margin-bottom: 24px;
@@ -657,13 +657,13 @@
 }
 
 .cta-content h2 {
-  font-size: 36px;
-  font-weight: 800;
+  font-size: var(--text-section-heading-size);
+  font-weight: var(--text-section-heading-weight);
   margin-bottom: 12px;
 }
 
 .cta-content p {
-  font-size: 16px;
+  font-size: var(--text-body-size);
   opacity: 0.9;
   margin-bottom: 32px;
 }
@@ -679,7 +679,8 @@
   color: var(--primary);
   padding: 14px 28px;
   border-radius: 50px;
-  font-weight: 700;
+  font-size: var(--text-btn-size);
+  font-weight: var(--text-btn-weight);
   border: none;
   cursor: pointer;
 }
@@ -690,7 +691,8 @@
   border: 2px solid #fff;
   padding: 14px 28px;
   border-radius: 50px;
-  font-weight: 700;
+  font-size: var(--text-btn-size);
+  font-weight: var(--text-btn-weight);
   cursor: pointer;
 }
 

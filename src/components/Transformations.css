@@ -43,7 +43,7 @@
 .story-card__kgs {
   background: var(--primary);
   color: #fff;
-  font-size: 13px;
+  font-size: var(--text-small-size);
   font-weight: 800;
   text-align: center;
   padding: 8px;
@@ -102,14 +102,14 @@
 }
 
 .story-card__name {
-  font-size: 17px;
-  font-weight: 700;
+  font-size: var(--text-nav-size);
+  font-weight: var(--text-nav-weight);
   color: var(--text-dark);
   margin-bottom: 4px;
 }
 
 .story-card__duration {
-  font-size: 13px;
+  font-size: var(--text-small-size);
   color: var(--text-light);
 }
 

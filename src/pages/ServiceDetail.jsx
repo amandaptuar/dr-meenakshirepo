@@ -15,6 +15,84 @@ const serviceData = {
       'Regular follow-ups & support',
       'Visible & lasting results'
     ]
+  },
+  '21-days-weight-loss': {
+    title: '21 Days Weight Loss',
+    subtitle: 'Jumpstart Your Journey in 3 Weeks.',
+    desc: 'A proven 21-day program with simple routines, healthy meals, and expert guidance. This intensive program is perfect for kickstarting your metabolism and establishing healthy habits quickly.',
+    features: [
+      'Intensive 21-day structured plan',
+      'Quick and healthy meal prep ideas',
+      'Daily motivation and tracking',
+      'Metabolism-boosting strategies',
+      'Detoxification and gut health',
+      'Habit-building techniques'
+    ]
+  },
+  'obesity-management': {
+    title: 'Obesity Management',
+    subtitle: 'Targeted strategies for a healthier life.',
+    desc: 'Comprehensive nutrition plans to safely reduce obesity and improve overall health markers. We take a medical and holistic approach to ensure sustainable fat loss and improved vitality.',
+    features: [
+      'Comprehensive health assessment',
+      'Customized portion control strategies',
+      'Focus on insulin resistance',
+      'Behavioral eating counseling',
+      'Cardiovascular health improvement',
+      'Long-term weight maintenance'
+    ]
+  },
+  'pcos-pcod-diet': {
+    title: 'PCOS / PCOD Diet',
+    subtitle: 'Balance Your Hormones Naturally.',
+    desc: 'Hormone-balancing diet plans to manage PCOS/PCOD symptoms naturally. We focus on low-glycemic foods, inflammation reduction, and specific nutrients that support reproductive health.',
+    features: [
+      'Hormone-friendly meal plans',
+      'Insulin sensitivity improvement',
+      'Anti-inflammatory foods focus',
+      'Natural symptom management',
+      'Weight loss tailored for PCOS',
+      'Nutritional deficiency correction'
+    ]
+  },
+  'diabetes-diet-plan': {
+    title: 'Diabetes Diet Plan',
+    subtitle: 'Control Blood Sugar with Smart Nutrition.',
+    desc: 'Manage blood sugar levels effectively with customized diet and nutrition support. Our plans help stabilize glucose levels while still allowing you to enjoy delicious, satisfying meals.',
+    features: [
+      'Blood sugar stabilization',
+      'Low glycemic index meal planning',
+      'Carbohydrate counting guidance',
+      'HbA1c improvement strategies',
+      'Heart health protection',
+      'Preventative nutrition care'
+    ]
+  },
+  'senior-nutrition': {
+    title: 'Senior Nutrition',
+    subtitle: 'Healthy Aging & Active Living.',
+    desc: 'Specialized nutrition plans to support healthy aging. We address age-related nutritional needs, bone health, digestion, and energy levels to help you enjoy an active lifestyle.',
+    features: [
+      'Bone density & joint support',
+      'Easy-to-digest meal options',
+      'Immunity-boosting nutrients',
+      'Memory and cognitive health',
+      'Muscle mass preservation',
+      'Energy level enhancement'
+    ]
+  },
+  'wellness-coaching': {
+    title: 'Wellness Coaching',
+    subtitle: 'Holistic Health for Mind and Body.',
+    desc: 'Mindful eating, stress management, and lifestyle coaching for long-term wellness. This program goes beyond diet to address the psychological and emotional aspects of health.',
+    features: [
+      'Mindful eating practices',
+      'Stress & anxiety management',
+      'Sleep quality improvement',
+      'Work-life balance strategies',
+      'Emotional eating solutions',
+      'Holistic lifestyle transformation'
+    ]
   }
 };
 

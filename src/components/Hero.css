@@ -53,12 +53,12 @@
 }
 
 .hero__headline {
-  font-size: clamp(46px, 5.2vw, 80px);
-  font-weight: 900;
+  font-size: var(--text-hero-size);
+  font-weight: var(--text-hero-weight);
   line-height: 1.05;
   color: #111;
   margin-bottom: 22px;
-  letter-spacing: -2px;
+  letter-spacing: -0.03em;
 }
 
 .hero__headline--red {
@@ -67,10 +67,12 @@
 }
 
 .hero__desc {
-  font-size: 17px;
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
   color: #555;
   line-height: 1.75;
   margin-bottom: 36px;
+  letter-spacing: -0.01em;
 }
 
 /* Feature icons — bigger, spread out */
@@ -120,8 +122,8 @@
 }
 
 .hero__feature-label {
-  font-size: 13.5px;
-  font-weight: 600;
+  font-size: var(--text-small-size);
+  font-weight: var(--text-nav-weight);
   color: #444;
   line-height: 1.4;
   white-space: pre-line;
@@ -143,13 +145,14 @@
   color: #fff;
   padding: 16px 34px;
   border-radius: 50px;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--text-btn-size);
+  font-weight: var(--text-btn-weight);
   border: 2px solid var(--primary);
   cursor: pointer;
   transition: var(--transition);
   box-shadow: 0 8px 28px rgba(200,16,46,0.32);
   font-family: var(--font-main);
+  letter-spacing: -0.01em;
 }
 
 .hero__btn-primary:hover {
@@ -167,13 +170,14 @@
   color: #222;
   padding: 16px 34px;
   border-radius: 50px;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--text-btn-size);
+  font-weight: var(--text-btn-weight);
   border: 2px solid #ccc;
   cursor: pointer;
   transition: var(--transition);
   font-family: var(--font-main);
   box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  letter-spacing: -0.01em;
 }
 
 .hero__btn-secondary:hover {
@@ -236,21 +240,23 @@
 }
 
 .hero__info-name {
-  font-size: 19px;
-  font-weight: 800;
+  font-size: var(--text-card-title-size);
+  font-weight: var(--text-card-title-weight);
   color: #111;
   margin-bottom: 3px;
+  letter-spacing: -0.02em;
 }
 
 .hero__info-role {
-  font-size: 13px;
+  font-size: var(--text-small-size);
+  font-weight: var(--text-small-weight);
   color: #888;
   margin-bottom: 4px;
 }
 
 .hero__info-exp {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--text-small-size);
+  font-weight: var(--text-btn-weight);
   color: var(--primary);
 }
 
@@ -270,7 +276,8 @@
 }
 
 .hero__info-quote {
-  font-size: 14.5px;
+  font-size: var(--text-small-size);
+  font-weight: var(--text-small-weight);
   color: #555;
   line-height: 1.7;
   font-style: italic;
@@ -294,17 +301,18 @@
 
 .hero__stat-number {
   display: block;
-  font-size: 34px;
-  font-weight: 900;
+  font-size: var(--text-section-heading-size);
+  font-weight: var(--text-section-heading-weight);
   line-height: 1;
   margin-bottom: 4px;
+  letter-spacing: -0.02em;
 }
 
 .hero__stat-label {
   display: block;
-  font-size: 15px;
+  font-size: var(--text-small-size);
   opacity: 0.88;
-  font-weight: 600;
+  font-weight: var(--text-nav-weight);
 }
 
 /* ══════════════════════════════════════
@@ -329,7 +337,7 @@
 }
 
 @media (max-width: 600px) {
-  .hero__headline { font-size: 40px; letter-spacing: -1px; }
+  .hero__headline { letter-spacing: -0.02em; }
   .hero__inner { padding: 50px 24px; }
   .hero__features { gap: 16px; }
 }

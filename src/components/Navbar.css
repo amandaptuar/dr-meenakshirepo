@@ -58,15 +58,15 @@
 }
 
 .logo-text__name {
-  font-size: 13px;
+  font-size: var(--text-small-size);
   font-weight: 800;
-  letter-spacing: 0.5px;
+  letter-spacing: -0.01em;
   color: var(--text-dark);
 }
 
 .logo-text__title {
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: var(--text-label-weight);
   color: var(--primary);
   letter-spacing: 0.3px;
 }
@@ -84,8 +84,8 @@
 .navbar__link {
   padding: 9px 16px;
   border-radius: 8px;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: var(--text-nav-size);
+  font-weight: var(--text-nav-weight);
   color: var(--text-medium);
   cursor: pointer;
   transition: var(--transition);
@@ -93,6 +93,7 @@
   align-items: center;
   gap: 5px;
   position: relative;
+  letter-spacing: -0.01em;
 }
 
 .navbar__link:hover,
@@ -137,11 +138,12 @@
 .dropdown__item {
   padding: 10px 14px;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: var(--text-nav-size);
+  font-weight: var(--text-nav-weight);
   color: var(--text-medium);
   cursor: pointer;
   transition: var(--transition);
-  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 .dropdown__item:hover {
@@ -151,9 +153,11 @@
 
 /* CTA */
 .navbar__cta {
-  font-size: 14.5px;
+  font-size: var(--text-btn-size);
+  font-weight: var(--text-btn-weight);
   padding: 12px 24px;
   flex-shrink: 0;
+  letter-spacing: -0.01em;
 }
 
 /* Hamburger */
@@ -200,10 +204,11 @@
   display: block;
   padding: 12px 14px;
   border-radius: 10px;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: var(--text-nav-size);
+  font-weight: var(--text-nav-weight);
   color: var(--text-dark);
   transition: var(--transition);
+  letter-spacing: -0.01em;
 }
 
 .mobile-link:hover {

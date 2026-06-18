@@ -66,16 +66,16 @@
 }
 
 .about-hero__title {
-  font-size: clamp(46px, 5.2vw, 76px);
-  font-weight: 900;
+  font-size: var(--text-hero-size);
+  font-weight: var(--text-hero-weight);
   line-height: 1.05;
   color: #111;
   margin-bottom: 22px;
-  letter-spacing: -2px;
+  letter-spacing: -0.03em;
 }
 
 .about-hero__desc {
-  font-size: 17px;
+  font-size: var(--text-body-size);
   color: #555;
   line-height: 1.75;
   margin-bottom: 40px;
@@ -157,7 +157,7 @@
 }
 
 .about-hero__quote-card p {
-  font-size: 16px;
+  font-size: var(--text-small-size);
   color: #444;
   line-height: 1.6;
   font-style: italic;
@@ -233,7 +233,7 @@
 }
 
 .journey__desc {
-  font-size: 16px;
+  font-size: var(--text-body-size);
   color: #555;
   line-height: 1.7;
   margin: 24px 0 32px;
@@ -250,8 +250,8 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: var(--text-nav-size);
+  font-weight: var(--text-nav-weight);
   color: #333;
 }
 
@@ -299,14 +299,14 @@
 }
 
 .mv-content h3 {
-  font-size: 22px;
-  font-weight: 800;
+  font-size: var(--text-card-title-size);
+  font-weight: var(--text-card-title-weight);
   color: #111;
   margin-bottom: 8px;
 }
 
 .mv-content p {
-  font-size: 15px;
+  font-size: var(--text-body-size);
   color: #555;
   line-height: 1.6;
 }
@@ -333,7 +333,7 @@
 }
 
 .beliefs__desc {
-  font-size: 16px;
+  font-size: var(--text-body-size);
   color: #555;
   margin: 16px 0 32px;
 }
@@ -429,17 +429,17 @@
 }
 
 .impact-card h3 {
-  font-size: 28px;
-  font-weight: 900;
+  font-size: var(--text-section-heading-size);
+  font-weight: var(--text-section-heading-weight);
   color: #111;
   margin-bottom: 4px;
 }
 
 .impact-card p {
-  font-size: 13px;
+  font-size: var(--text-small-size);
   color: #666;
   line-height: 1.4;
-  font-weight: 500;
+  font-weight: var(--text-nav-weight);
 }
 
 /* ─────────────────────────────────────────
@@ -468,8 +468,8 @@
   
   .about-hero__content { padding-right: 0; }
   
-  .about-hero__title { font-size: 42px; letter-spacing: -1px; margin-bottom: 16px; }
-  .about-hero__desc { font-size: 16px; margin-bottom: 32px; }
+  .about-hero__title { letter-spacing: -0.02em; margin-bottom: 16px; }
+  .about-hero__desc { margin-bottom: 32px; }
   
   .about-hero__stats { justify-content: center; gap: 20px; }
   .about-stat { max-width: 90px; }

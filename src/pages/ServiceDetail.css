@@ -49,23 +49,23 @@
 }
 
 .sd-hero__title {
-  font-size: 56px;
-  font-weight: 800;
+  font-size: var(--text-hero-size);
+  font-weight: var(--text-hero-weight);
   color: #111;
   line-height: 1.1;
   margin-bottom: 24px;
-  letter-spacing: -1px;
+  letter-spacing: -0.03em;
 }
 
 .sd-hero__subtitle {
-  font-size: 24px;
+  font-size: var(--text-sub-heading-size);
   color: #111;
   margin-bottom: 24px;
-  font-weight: 700;
+  font-weight: var(--text-sub-heading-weight);
 }
 
 .sd-hero__desc {
-  font-size: 18px;
+  font-size: var(--text-body-size);
   color: #555;
   line-height: 1.6;
   margin-bottom: 40px;
@@ -82,7 +82,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 14px;
+  font-size: var(--text-small-size);
   font-weight: 500;
   color: #333;
 }
@@ -99,7 +99,8 @@
   color: #333;
   padding: 14px 28px;
   border-radius: var(--radius-md);
-  font-weight: 600;
+  font-size: var(--text-btn-size);
+  font-weight: var(--text-btn-weight);
   cursor: pointer;
   transition: var(--transition);
 }
@@ -204,14 +205,14 @@
 .sd-step-icon svg { width: 32px; height: 32px; }
 
 .sd-step-card h4 {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--text-nav-size);
+  font-weight: var(--text-nav-weight);
   color: #111;
   margin-bottom: 8px;
 }
 
 .sd-step-card p {
-  font-size: 13px;
+  font-size: var(--text-small-size);
   color: #666;
   line-height: 1.5;
   margin: 0;
@@ -256,8 +257,8 @@
 
 .sd-benefit-icon svg { width: 32px; height: 32px; }
 
-.sd-benefit-item h4 { font-size: 16px; font-weight: 700; color: #111; margin-bottom: 6px; }
-.sd-benefit-item p { font-size: 14px; color: #666; line-height: 1.6; margin: 0; }
+.sd-benefit-item h4 { font-size: var(--text-nav-size); font-weight: var(--text-nav-weight); color: #111; margin-bottom: 6px; }
+.sd-benefit-item p { font-size: var(--text-small-size); color: #666; line-height: 1.6; margin: 0; }
 
 .tc-images-container {
   display: flex;
@@ -296,13 +297,13 @@
 .tc-caption {
   text-align: center;
   padding: 32px;
-  font-size: 24px;
+  font-size: var(--text-sub-heading-size);
   background: #fff;
   border-radius: 0 0 12px 12px;
 }
 
-.tc-caption strong { color: #111; display: block; margin-bottom: 8px; font-weight: 800; }
-.text-red { color: #d4143a; font-weight: 800; font-size: 20px; }
+.tc-caption strong { color: #111; display: block; margin-bottom: 8px; font-weight: var(--text-sub-heading-weight); }
+.text-red { color: #d4143a; font-weight: 800; font-size: var(--text-card-title-size); }
 
 /* ─────────────────────────────────────────
    4. CTA SECTION
@@ -339,14 +340,15 @@
 }
 
 .sd-cta-box__right h2 {
-  font-size: 32px;
-  font-weight: 800;
+  font-size: var(--text-section-heading-size);
+  font-weight: var(--text-section-heading-weight);
   color: #111;
   margin-bottom: 12px;
+  letter-spacing: -0.02em;
 }
 
 .sd-cta-box__right p {
-  font-size: 18px;
+  font-size: var(--text-body-size);
   color: #555;
   margin-bottom: 32px;
 }

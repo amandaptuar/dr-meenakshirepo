@@ -68,14 +68,15 @@
 }
 
 .booking-modal__header h3 {
-  font-size: 28px;
-  font-weight: 800;
+  font-size: var(--text-sub-heading-size);
+  font-weight: var(--text-sub-heading-weight);
   color: #111;
   margin-bottom: 12px;
+  letter-spacing: -0.02em;
 }
 
 .booking-modal__header p {
-  font-size: 15px;
+  font-size: var(--text-body-size);
   color: #666;
   line-height: 1.5;
 }
@@ -93,8 +94,8 @@
 
 .booking-modal__form label {
   display: block;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
   color: #333;
   margin-bottom: 8px;
 }
@@ -106,7 +107,7 @@
   border: 1px solid #ddd;
   border-radius: var(--radius-md);
   font-family: inherit;
-  font-size: 15px;
+  font-size: 16px; /* keep 16px to prevent iOS zoom */
   transition: all 0.2s;
   background: #fafafa;
 }

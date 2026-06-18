@@ -64,8 +64,8 @@ const Navbar = () => {
             <Link to="/about" onClick={(e) => handleNavClick(e, '/about', '')} className={`navbar__link ${location.pathname === '/about' ? 'active' : ''}`}>About</Link>
           </li>
           <li><Link to="/services" onClick={(e) => handleNavClick(e, '/services', '')} className={`navbar__link ${location.pathname === '/services' ? 'active' : ''}`}>Services</Link></li>
-          <li><Link to="/services/weight-loss-program" onClick={(e) => handleNavClick(e, '/services/weight-loss-program', '')} className={`navbar__link ${location.pathname === '/services/weight-loss-program' ? 'active' : ''}`}>Service Detail</Link></li>
           <li><Link to="/success-stories" onClick={(e) => handleNavClick(e, '/success-stories', '')} className={`navbar__link ${location.pathname === '/success-stories' ? 'active' : ''}`}>Success Stories</Link></li>
+          <li><Link to="/contact" onClick={(e) => handleNavClick(e, '/contact', '')} className={`navbar__link ${location.pathname === '/contact' ? 'active' : ''}`}>Contact</Link></li>
         </ul>
 
         {/* CTA Button */}
@@ -83,8 +83,8 @@ const Navbar = () => {
           <Link to="/" onClick={(e) => handleNavClick(e, '/', '')} className="mobile-link">Home</Link>
           <Link to="/about" onClick={(e) => handleNavClick(e, '/about', '')} className="mobile-link">About</Link>
           <Link to="/services" onClick={(e) => handleNavClick(e, '/services', '')} className="mobile-link">Services</Link>
-          <Link to="/services/weight-loss-program" onClick={(e) => handleNavClick(e, '/services/weight-loss-program', '')} className="mobile-link">Service Detail</Link>
           <Link to="/success-stories" onClick={(e) => handleNavClick(e, '/success-stories', '')} className="mobile-link">Success Stories</Link>
+          <Link to="/contact" onClick={(e) => handleNavClick(e, '/contact', '')} className="mobile-link">Contact</Link>
           <button className="btn-primary" style={{ marginTop: 12 }} onClick={() => { window.dispatchEvent(new Event('openBookingModal')); setMenuOpen(false); }}>Book an Appointment</button>
         </div>
       )}

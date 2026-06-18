@@ -50,16 +50,16 @@
 }
 
 .cta-section__title {
-  font-size: clamp(24px, 2.8vw, 38px);
-  font-weight: 900;
+  font-size: var(--text-section-heading-size);
+  font-weight: var(--text-section-heading-weight);
   color: #fff;
   margin-bottom: 10px;
   line-height: 1.2;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.02em;
 }
 
 .cta-section__subtitle {
-  font-size: 15px;
+  font-size: var(--text-body-size);
   color: rgba(255,255,255,0.78);
   line-height: 1.65;
   margin-bottom: 28px;
@@ -79,13 +79,14 @@
   gap: 8px;
   padding: 13px 26px;
   border-radius: 50px;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: var(--text-btn-size);
+  font-weight: var(--text-btn-weight);
   cursor: pointer;
   transition: var(--transition);
   border: 2px solid transparent;
   font-family: var(--font-main);
   white-space: nowrap;
+  letter-spacing: -0.01em;
 }
 
 .cta-btn--primary {
@@ -119,7 +120,7 @@
   align-items: center;
   gap: 10px;
   color: rgba(255,255,255,0.82);
-  font-size: 14.5px;
+  font-size: var(--text-small-size);
 }
 
 .cta-section__call strong {
