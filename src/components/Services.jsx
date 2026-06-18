@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Services.css';
 
 /* Matching reference: clean red outlined SVG icons */
@@ -101,10 +102,10 @@ const Services = () => (
             </div>
             <h3 className="service-card__title">{title}</h3>
             <p className="service-card__desc">{desc}</p>
-            <button className="service-card__link">
+            <Link to="/services" className="service-card__link" style={{ display: 'inline-flex', alignItems: 'center' }}>
               Learn More
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </button>
+            </Link>
           </div>
         ))}
       </div>

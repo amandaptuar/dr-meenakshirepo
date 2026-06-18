@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import transformImg from '../assets/transform.png';
 import './Transformations.css';
 
@@ -61,10 +62,10 @@ const Transformations = () => {
         </div>
 
         <div className="transformations__cta">
-          <button className="btn-outline-primary" onClick={() => {}}>
+          <Link to="/success-stories" className="btn-outline-primary" style={{ display: 'inline-flex', alignItems: 'center' }}>
             View More Success Stories
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
+          </Link>
         </div>
       </div>
     </section>
