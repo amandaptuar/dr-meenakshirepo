@@ -3,6 +3,9 @@
    Global Design System & Styles
    ============================================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+
 :root {
   --primary: #C8102E;
   --primary-dark: #a00d25;
@@ -221,4 +224,120 @@ button { cursor: pointer; font-family: var(--font-main); border: none; outline: 
 
 @media (max-width: 768px) {
   .container { padding: 0 24px; }
+}
+
+/* ──────────────────────────────
+   GLOBAL TYPOGRAPHY — ALL PAGES
+   (Inter, enterprise-grade scale)
+────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-main);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: #0f172a;
+}
+
+h1 { font-size: clamp(40px, 5vw, 60px); font-weight: 800; }
+h2 { font-size: clamp(30px, 4vw, 48px); font-weight: 700; }
+h3 { font-size: clamp(22px, 3vw, 32px); font-weight: 700; }
+h4 { font-size: clamp(18px, 2vw, 24px); font-weight: 600; }
+h5 { font-size: 18px; font-weight: 600; }
+h6 { font-size: 16px; font-weight: 600; }
+
+p {
+  font-family: var(--font-main);
+  font-size: clamp(16px, 1.5vw, 18px);
+  line-height: 1.75;
+  color: #334155;
+  font-weight: 400;
+}
+
+label {
+  font-family: var(--font-main);
+  font-size: 16px;
+  font-weight: 500;
+  color: #374151;
+}
+
+input, select, textarea {
+  font-family: var(--font-main);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* Navbar links */
+.navbar__link {
+  font-family: var(--font-main);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Mobile nav links */
+.mobile-link {
+  font-family: var(--font-main);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Buttons global override */
+.btn-primary, .btn-secondary, .btn-outline-primary {
+  font-family: var(--font-main) !important;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Footer */
+.footer {
+  font-family: var(--font-main);
+  font-size: 15px;
+  font-weight: 400;
+  color: #64748b;
+}
+
+/* Assessment page */
+.assessment-form label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.assessment-form input,
+.assessment-form select {
+  font-size: 16px;
+  padding: 14px 18px;
+  border-radius: 10px;
+}
+
+.assessment-loading h2 {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 12px;
+}
+
+.assessment-loading p {
+  font-size: 18px;
+  color: #64748b;
+}
+
+/* Dashboard page additions */
+.dash-title {
+  font-size: clamp(28px, 3.5vw, 44px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.03em !important;
+  color: #0f172a !important;
+}
+
+/* Responsive typography for small screens */
+@media (max-width: 768px) {
+  h1 { font-size: clamp(28px, 7vw, 44px); }
+  h2 { font-size: clamp(24px, 6vw, 36px); }
+  h3 { font-size: clamp(20px, 5vw, 28px); }
+  p  { font-size: 16px; }
+
+  .navbar__link { font-size: 16px; }
+  .btn-primary, .btn-secondary { font-size: 15px; padding: 11px 20px; }
 }
