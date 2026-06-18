@@ -4,71 +4,68 @@ import { supabase } from '../supabaseClient';
 import './Navbar.css';
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [session, setSession] = useState(null);
-  const [profile, setProfile] = useState(null);
+  const [scrolled, setScrolled]       = useState(false);
+  const [menuOpen, setMenuOpen]       = useState(false);
+  const [session, setSession]         = useState(null);
+  const [profile, setProfile]         = useState(null);
   const [profileOpen, setProfileOpen] = useState(false);
   const profileRef = useRef(null);
-  const navigate = useNavigate();
-  const location = useLocation();
+  const navigate   = useNavigate();
+  const location   = useLocation();
 
-  const isDashboardPage = location.pathname === '/dashboard';
+  const isDashboard = location.pathname === '/dashboard';
 
-  // Scroll listener
+  /* ── Scroll ────────────────────────────── */
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Auth listener
+  /* ── Auth ──────────────────────────────── */
   useEffect(() => {
-    const loadSession = async () => {
+    const load = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       setSession(session);
-      if (session) fetchProfile(session.user.id);
+      if (session) loadProfile(session.user.id);
     };
-    loadSession();
+    load();
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-      if (session) fetchProfile(session.user.id);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, s) => {
+      setSession(s);
+      if (s) loadProfile(s.user.id);
       else setProfile(null);
     });
 
-    const handleAuthChange = () => loadSession();
-    window.addEventListener('authStatusChanged', handleAuthChange);
-
+    const onAuthChanged = () => load();
+    window.addEventListener('authStatusChanged', onAuthChanged);
     return () => {
-      window.removeEventListener('authStatusChanged', handleAuthChange);
+      window.removeEventListener('authStatusChanged', onAuthChanged);
       subscription.unsubscribe();
     };
   }, []);
 
-  const fetchProfile = async (userId) => {
-    const { data } = await supabase.from('users').select('name, email').eq('id', userId).single();
+  const loadProfile = async (uid) => {
+    const { data } = await supabase.from('users').select('name, email').eq('id', uid).single();
     if (data) setProfile(data);
   };
 
-  // Close profile dropdown on outside click
+  /* ── Close dropdown on outside click ───── */
   useEffect(() => {
-    const handleClickOutside = (e) => {
+    const handler = (e) => {
       if (profileRef.current && !profileRef.current.contains(e.target)) {
         setProfileOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
   }, []);
 
-  // Handle cross-page scrolling
+  /* ── Hash scroll ────────────────────────── */
   useEffect(() => {
     if (location.hash) {
       const id = location.hash.replace('#', '');
-      setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 100);
     }
   }, [location]);
 
@@ -76,11 +73,8 @@ const Navbar = () => {
     e.preventDefault();
     setMenuOpen(false);
     if (location.pathname === path) {
-      if (hash) {
-        document.getElementById(hash.replace('#', ''))?.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+      if (hash) document.getElementById(hash.replace('#', ''))?.scrollIntoView({ behavior: 'smooth' });
+      else window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       navigate(`${path}${hash}`);
     }
@@ -95,15 +89,92 @@ const Navbar = () => {
     navigate('/');
   };
 
-  // Get initials for avatar
-  const getInitials = (name) => {
+  const initials = (name) => {
     if (!name) return '?';
     return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
   };
 
+  /* ─────────────────────────────────────────
+     Profile Avatar + Dropdown (reusable)
+  ───────────────────────────────────────── */
+  const ProfileAvatar = () => (
+    <div ref={profileRef} style={{ position: 'relative' }}>
+      <button
+        onClick={() => setProfileOpen(prev => !prev)}
+        title={profile?.name || 'Profile'}
+        style={{
+          width: '42px', height: '42px', borderRadius: '50%',
+          background: 'linear-gradient(135deg, var(--primary), #ff6b6b)',
+          color: '#fff', fontWeight: 800, fontSize: '15px',
+          border: '2px solid rgba(255,255,255,0.3)',
+          cursor: 'pointer', flexShrink: 0,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 2px 10px rgba(212,20,58,0.35)',
+          transition: 'transform 0.15s, box-shadow 0.15s',
+          fontFamily: "'Inter', sans-serif",
+        }}
+        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.08)'; }}
+        onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
+      >
+        {initials(profile?.name)}
+      </button>
+
+      {/* Dropdown */}
+      {profileOpen && (
+        <div style={{
+          position: 'absolute', top: '54px', right: 0,
+          background: '#fff', borderRadius: '14px',
+          boxShadow: '0 12px 48px rgba(0,0,0,0.18)',
+          border: '1px solid #f0f0f0',
+          minWidth: '240px', zIndex: 99999,
+          overflow: 'hidden',
+          fontFamily: "'Inter', sans-serif",
+        }}>
+          {/* Profile info */}
+          <div style={{ padding: '20px', borderBottom: '1px solid #f4f4f4', background: '#fafafa' }}>
+            <div style={{
+              width: '44px', height: '44px', borderRadius: '50%',
+              background: 'linear-gradient(135deg, var(--primary), #ff6b6b)',
+              color: '#fff', fontWeight: 800, fontSize: '16px',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              marginBottom: '10px',
+            }}>
+              {initials(profile?.name)}
+            </div>
+            <div style={{ fontWeight: 700, color: '#0f172a', fontSize: '15px', marginBottom: '3px' }}>
+              {profile?.name || 'User'}
+            </div>
+            <div style={{ color: '#94a3b8', fontSize: '13px', wordBreak: 'break-all' }}>
+              {profile?.email || session?.user?.email}
+            </div>
+          </div>
+
+          {/* Menu items */}
+          <div style={{ padding: '6px' }}>
+            <DropdownItem
+              icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>}
+              label="My Dashboard"
+              onClick={() => { setProfileOpen(false); navigate('/dashboard'); }}
+              color="#333"
+              hoverBg="#f5f5f5"
+            />
+            <DropdownItem
+              icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>}
+              label="Logout"
+              onClick={handleLogout}
+              color="#b91c1c"
+              hoverBg="#fef2f2"
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="container navbar__inner">
+
         {/* Logo */}
         <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
           <div className="logo-icon">
@@ -116,7 +187,7 @@ const Navbar = () => {
           </div>
         </Link>
 
-        {/* Desktop Nav Links — always visible on all pages */}
+        {/* Desktop Nav Links */}
         <ul className="navbar__links">
           <li><Link to="/" onClick={(e) => handleNavClick(e, '/', '')} className={`navbar__link ${location.pathname === '/' ? 'active' : ''}`}>Home</Link></li>
           <li><Link to="/about" onClick={(e) => handleNavClick(e, '/about', '')} className={`navbar__link ${location.pathname === '/about' ? 'active' : ''}`}>About</Link></li>
@@ -125,115 +196,37 @@ const Navbar = () => {
           <li><Link to="/contact" onClick={(e) => handleNavClick(e, '/contact', '')} className={`navbar__link ${location.pathname === '/contact' ? 'active' : ''}`}>Contact</Link></li>
         </ul>
 
-        {/* Actions — always on the right */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }} className="navbar__actions">
+        {/* Right Actions */}
+        <div className="navbar__actions" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           {session ? (
             <>
-              {/* Show Dashboard link only when NOT on dashboard page */}
-              {!isDashboardPage && (
-                <Link to="/dashboard" className="navbar__link" style={{ fontWeight: 600, color: 'var(--primary)' }}>Dashboard</Link>
+              {/* Dashboard link — hidden when already on dashboard */}
+              {!isDashboard && (
+                <Link to="/dashboard" className="navbar__link" style={{ fontWeight: 600, color: 'var(--primary)' }}>
+                  Dashboard
+                </Link>
               )}
+              {/* Profile avatar with dropdown */}
+              <ProfileAvatar />
+            </>
+          ) : (
+            <button
+              className="btn-secondary navbar__cta"
+              style={{ background: '#f1f5f9', color: '#0f172a', border: '1px solid #e2e8f0', padding: '10px 20px', borderRadius: '50px', fontWeight: 600, cursor: 'pointer' }}
+              onClick={() => window.dispatchEvent(new Event('openLoginModal'))}
+            >
+              Sign In
+            </button>
+          )}
 
-              {/* Profile Avatar + Dropdown */}
-              <div ref={profileRef} style={{ position: 'relative' }}>
-                <button
-                  onClick={() => setProfileOpen(!profileOpen)}
-                  style={{
-                    width: '40px', height: '40px', borderRadius: '50%',
-                    background: 'linear-gradient(135deg, var(--primary), #ff6b6b)',
-                    color: '#fff', fontWeight: 700, fontSize: '14px',
-                    border: 'none', cursor: 'pointer',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    boxShadow: '0 2px 8px rgba(212,20,58,0.3)',
-                    transition: 'transform 0.2s',
-                  }}
-                  title={profile?.name || 'Profile'}
-                >
-                  {getInitials(profile?.name)}
-                </button>
-
-                  {/* Dropdown */}
-                  {profileOpen && (
-                    <div style={{
-                      position: 'absolute', top: '52px', right: 0,
-                      background: '#fff', borderRadius: '12px',
-                      boxShadow: '0 10px 40px rgba(0,0,0,0.15)',
-                      border: '1px solid #f0f0f0',
-                      minWidth: '240px', zIndex: 9999,
-                      overflow: 'hidden'
-                    }}>
-                      {/* Profile info */}
-                      <div style={{ padding: '20px', borderBottom: '1px solid #f0f0f0' }}>
-                        <div style={{
-                          width: '48px', height: '48px', borderRadius: '50%',
-                          background: 'linear-gradient(135deg, var(--primary), #ff6b6b)',
-                          color: '#fff', fontWeight: 700, fontSize: '18px',
-                          display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          marginBottom: '12px'
-                        }}>
-                          {getInitials(profile?.name)}
-                        </div>
-                        <div style={{ fontWeight: 700, color: '#111', fontSize: '15px', marginBottom: '4px' }}>
-                          {profile?.name || 'User'}
-                        </div>
-                        <div style={{ color: '#888', fontSize: '13px', wordBreak: 'break-all' }}>
-                          {profile?.email || session?.user?.email}
-                        </div>
-                      </div>
-
-                      {/* Actions */}
-                      <div style={{ padding: '8px' }}>
-                        <button
-                          onClick={() => { setProfileOpen(false); navigate('/dashboard'); }}
-                          style={{
-                            width: '100%', padding: '10px 16px', textAlign: 'left',
-                            background: 'none', border: 'none', cursor: 'pointer',
-                            borderRadius: '8px', fontSize: '14px', color: '#333',
-                            fontWeight: 500, display: 'flex', alignItems: 'center', gap: '10px'
-                          }}
-                          onMouseEnter={e => e.currentTarget.style.background = '#f5f5f5'}
-                          onMouseLeave={e => e.currentTarget.style.background = 'none'}
-                        >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-                          My Dashboard
-                        </button>
-                        <button
-                          onClick={handleLogout}
-                          style={{
-                            width: '100%', padding: '10px 16px', textAlign: 'left',
-                            background: 'none', border: 'none', cursor: 'pointer',
-                            borderRadius: '8px', fontSize: '14px', color: '#b91c1c',
-                            fontWeight: 500, display: 'flex', alignItems: 'center', gap: '10px'
-                          }}
-                          onMouseEnter={e => e.currentTarget.style.background = '#fef2f2'}
-                          onMouseLeave={e => e.currentTarget.style.background = 'none'}
-                        >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-                          Logout
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </>
-            ) : (
-              <button
-                className="btn-secondary navbar__cta"
-                style={{ background: '#f1f5f9', color: '#0f172a', border: '1px solid #e2e8f0', padding: '10px 20px', borderRadius: '50px', fontWeight: '600', cursor: 'pointer' }}
-                onClick={() => window.dispatchEvent(new Event('openLoginModal'))}
-              >
-                Sign In
-              </button>
-            )}
-
-          {/* Book Appointment — always on right */}
+          {/* Book Appointment — always rightmost */}
           <button className="btn-primary navbar__cta" onClick={() => window.dispatchEvent(new Event('openBookingModal'))}>
             Book an Appointment
           </button>
         </div>
 
         {/* Hamburger */}
-        <button className={`navbar__hamburger ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
+        <button className={`navbar__hamburger ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(p => !p)} aria-label="Menu">
           <span /><span /><span />
         </button>
       </div>
@@ -241,7 +234,6 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="navbar__mobile-menu">
-          {/* All links always visible in mobile menu */}
           <Link to="/" onClick={(e) => handleNavClick(e, '/', '')} className="mobile-link">Home</Link>
           <Link to="/about" onClick={(e) => handleNavClick(e, '/about', '')} className="mobile-link">About</Link>
           <Link to="/services" onClick={(e) => handleNavClick(e, '/services', '')} className="mobile-link">Services</Link>
@@ -250,36 +242,100 @@ const Navbar = () => {
 
           {session ? (
             <>
-              <div style={{ padding: '16px', background: '#f9f9f9', borderRadius: '12px', marginTop: '8px' }}>
-                <div style={{ fontWeight: 700, color: '#111', fontSize: '16px' }}>{profile?.name || 'User'}</div>
-                <div style={{ color: '#888', fontSize: '14px', marginTop: '2px' }}>{profile?.email || session?.user?.email}</div>
+              {/* Profile card in mobile menu */}
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: '14px',
+                padding: '16px', background: '#f9f9f9', borderRadius: '14px',
+                marginTop: '10px', border: '1px solid #f0f0f0',
+              }}>
+                <div style={{
+                  width: '44px', height: '44px', borderRadius: '50%', flexShrink: 0,
+                  background: 'linear-gradient(135deg, var(--primary), #ff6b6b)',
+                  color: '#fff', fontWeight: 800, fontSize: '16px',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  {initials(profile?.name)}
+                </div>
+                <div>
+                  <div style={{ fontWeight: 700, color: '#0f172a', fontSize: '15px' }}>{profile?.name || 'User'}</div>
+                  <div style={{ color: '#94a3b8', fontSize: '13px', marginTop: '2px', wordBreak: 'break-all' }}>
+                    {profile?.email || session?.user?.email}
+                  </div>
+                </div>
               </div>
-              {!isDashboardPage && (
-                <Link to="/dashboard" onClick={() => setMenuOpen(false)} className="mobile-link" style={{ color: 'var(--primary)', marginTop: '8px' }}>Dashboard</Link>
+
+              {!isDashboard && (
+                <Link
+                  to="/dashboard"
+                  onClick={() => setMenuOpen(false)}
+                  className="mobile-link"
+                  style={{ color: 'var(--primary)', fontWeight: 700, marginTop: '4px' }}
+                >
+                  📊 My Dashboard
+                </Link>
               )}
+
               <button
-                style={{ background: '#fef2f2', color: '#b91c1c', border: '1px solid #fecaca', padding: '12px 24px', borderRadius: '50px', fontWeight: '600', cursor: 'pointer', marginTop: 12, width: '100%', fontSize: '16px' }}
                 onClick={handleLogout}
+                style={{
+                  width: '100%', padding: '13px 20px', marginTop: '8px',
+                  background: '#fef2f2', color: '#b91c1c',
+                  border: '1px solid #fecaca', borderRadius: '50px',
+                  fontWeight: 600, fontSize: '16px', cursor: 'pointer',
+                  fontFamily: "'Inter', sans-serif",
+                }}
               >
                 Logout
               </button>
             </>
           ) : (
             <button
-              style={{ background: '#f1f5f9', color: '#0f172a', border: '1px solid #e2e8f0', padding: '12px 24px', borderRadius: '50px', fontWeight: '600', cursor: 'pointer', marginTop: 12, width: '100%', fontSize: '16px' }}
               onClick={() => { window.dispatchEvent(new Event('openLoginModal')); setMenuOpen(false); }}
+              style={{
+                width: '100%', padding: '13px 20px', marginTop: '10px',
+                background: '#f1f5f9', color: '#0f172a',
+                border: '1px solid #e2e8f0', borderRadius: '50px',
+                fontWeight: 600, fontSize: '16px', cursor: 'pointer',
+                fontFamily: "'Inter', sans-serif",
+              }}
             >
               Sign In
             </button>
           )}
 
-          {/* Book Appointment always at bottom */}
-          <button className="btn-primary" style={{ marginTop: 12, width: '100%', fontSize: '16px' }} onClick={() => { window.dispatchEvent(new Event('openBookingModal')); setMenuOpen(false); }}>
+          <button
+            className="btn-primary"
+            style={{ marginTop: '10px', width: '100%', fontSize: '16px' }}
+            onClick={() => { window.dispatchEvent(new Event('openBookingModal')); setMenuOpen(false); }}
+          >
             Book an Appointment
           </button>
         </div>
       )}
     </nav>
+  );
+};
+
+/* ── Small helper for dropdown menu items ── */
+const DropdownItem = ({ icon, label, onClick, color, hoverBg }) => {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        width: '100%', padding: '11px 16px', textAlign: 'left',
+        background: hovered ? hoverBg : 'none',
+        border: 'none', cursor: 'pointer', borderRadius: '8px',
+        fontSize: '15px', color, fontWeight: 500,
+        display: 'flex', alignItems: 'center', gap: '10px',
+        fontFamily: "'Inter', sans-serif",
+        transition: 'background 0.15s',
+      }}
+    >
+      {icon}{label}
+    </button>
   );
 };
 

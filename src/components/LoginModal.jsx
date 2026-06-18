@@ -26,8 +26,9 @@ const LoginModal = ({ isOpen, onClose }) => {
     setLoading(true);
 
     try {
+      const cleanEmail = email.trim();
       const { data, error: authError } = await supabase.auth.signInWithPassword({
-        email,
+        email: cleanEmail,
         password
       });
 
@@ -49,7 +50,14 @@ const LoginModal = ({ isOpen, onClose }) => {
         }
       }
     } catch (err) {
-      setError(err.message);
+      let msg = err.message;
+      if (msg === 'Invalid login credentials') {
+        msg = 'Incorrect email or password. Please double-check your credentials (watch out for spaces).';
+      }
+      if (msg.includes('Email not confirmed')) {
+        msg = 'Please verify your email address before logging in.';
+      }
+      setError(msg);
     } finally {
       setLoading(false);
     }
