@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './CTASection.css';
 
 const CTASection = () => {
@@ -17,12 +18,12 @@ const CTASection = () => {
           </p>
 
           <div className="cta-section__actions">
-            <button className="cta-btn cta-btn--primary" onClick={() => scrollTo('ai-assessment')}>
+            <Link to="/assessment" className="cta-btn cta-btn--primary">
               Start Assessment
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
-            </button>
+            </Link>
             <button className="cta-btn cta-btn--outline" onClick={() => window.dispatchEvent(new Event('openBookingModal'))}>
               Book an Appointment
             </button>

@@ -132,12 +132,12 @@ const ServiceDetail = () => {
             </div>
             
             <div className="cta-buttons" style={{ justifyContent: 'flex-start', marginTop: '32px' }}>
-              <button className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }} onClick={() => document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' })}>
+              <Link to="/assessment" className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 Start Assessment 
                 <span style={{ background: '#fff', borderRadius: '50%', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <svg viewBox="0 0 24 24" fill="none" stroke="#d4143a" strokeWidth="2" style={{width:'12px', height:'12px'}}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </span>
-              </button>
+              </Link>
               <button className="btn-outline-grey" onClick={() => window.dispatchEvent(new Event('openBookingModal'))}>Book an Appointment</button>
             </div>
           </div>
@@ -254,12 +254,12 @@ const ServiceDetail = () => {
               <h2>Your Transformation Starts Today!</h2>
               <p>Take the first step towards a healthier, fitter and happier you.</p>
               <div className="cta-buttons" style={{ justifyContent: 'flex-start' }}>
-                <button className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }} onClick={() => document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' })}>
+                <Link to="/assessment" className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   Start Assessment 
                   <span style={{ background: '#fff', borderRadius: '50%', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <svg viewBox="0 0 24 24" fill="none" stroke="#d4143a" strokeWidth="2" style={{width:'12px', height:'12px'}}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </span>
-                </button>
+                </Link>
                 <button className="btn-outline-grey" onClick={() => window.dispatchEvent(new Event('openBookingModal'))}>Book an Appointment</button>
               </div>
             </div>

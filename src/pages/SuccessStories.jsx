@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './SuccessStories.css';
 
 const SuccessStories = () => {
@@ -223,7 +224,7 @@ const SuccessStories = () => {
               <h2>Your Success Story Can Be Next!</h2>
               <p>Take the first step today towards a fitter, healthier and happier you.</p>
               <div className="cta-buttons">
-                <button className="btn-white" onClick={() => document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' })}>Start Assessment <span>→</span></button>
+                <Link to="/assessment" className="btn-white" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>Start Assessment <span>→</span></Link>
                 <button className="btn-outline-white" onClick={() => window.dispatchEvent(new Event('openBookingModal'))}>Book an Appointment <span>→</span></button>
               </div>
             </div>

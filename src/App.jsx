@@ -8,12 +8,14 @@ import SuccessStories from './pages/SuccessStories';
 import Services from './pages/Services';
 import ServiceDetail from './pages/ServiceDetail';
 import Contact from './pages/Contact';
+import Assessment from './pages/Assessment';
+import Dashboard from './pages/Dashboard';
 import BookingModal from './components/BookingModal';
 import './App.css';
 
 function App() {
   const location = useLocation();
-  const showGlobalCTA = !['/success-stories', '/services', '/contact'].includes(location.pathname) && !location.pathname.startsWith('/services/');
+  const showGlobalCTA = !['/success-stories', '/services', '/contact', '/assessment', '/dashboard'].includes(location.pathname) && !location.pathname.startsWith('/services/');
 
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
@@ -35,6 +37,8 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/services/:id" element={<ServiceDetail />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/assessment" element={<Assessment />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
         {showGlobalCTA && <CTASection />}
       </main>
